@@ -1,0 +1,195 @@
+<Page x:Class="TP_2_Developpement_Application_Burreau.Pages.ParametresPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Paramètres">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="600"/>
+        </Grid.RowDefinitions>
+
+        <!-- En-tête de la page -->
+        <Border Grid.Row="0" Background="#FFC107" Padding="30,20">
+            <StackPanel>
+                <TextBlock Text="🔧 Paramètres" 
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="Configurez l'application selon vos préférences" 
+                           FontSize="16" 
+                           Foreground="#E0E0E0"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Contenu principal -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="40">
+                
+                <!-- Section Apparence -->
+                <Border Background="#F8F9FA" CornerRadius="12" Padding="30">
+                    <StackPanel>
+                        <TextBlock Text="🎨 Apparence" 
+                                   FontSize="20" 
+                                   FontWeight="Bold" 
+                                   Foreground="#333333"
+                                   Margin="0,0,0,20"/>
+
+                        <!-- Thème -->
+                        <StackPanel Margin="0,0,0,15">
+                            <TextBlock Text="Thème" 
+                                       FontSize="16" 
+                                       FontWeight="Medium" 
+                                       Foreground="#555555"
+                                       Margin="0,0,0,8"/>
+                            <ComboBox x:Name="cmbTheme" 
+                                      Width="200" 
+                                      HorizontalAlignment="Left"
+                                      SelectedIndex="0">
+                                <ComboBoxItem Content="Clair"/>
+                                <ComboBoxItem Content="Sombre"/>
+                                <ComboBoxItem Content="Système"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <!-- Taille de police -->
+                        <StackPanel Margin="0,0,0,15">
+                            <TextBlock Text="Taille de police" 
+                                       FontSize="16" 
+                                       FontWeight="Medium" 
+                                       Foreground="#555555"
+                                       Margin="0,0,0,8"/>
+                            <Slider x:Name="sliderFontSize" 
+                                    Minimum="10" 
+                                    Maximum="20" 
+                                    Value="14" 
+                                    Width="200" 
+                                    HorizontalAlignment="Left"
+                                    TickFrequency="1"
+                                    IsSnapToTickEnabled="True"/>
+                            <TextBlock Text="{Binding ElementName=sliderFontSize, Path=Value, StringFormat='{}{0:F0}px'}" 
+                                       FontSize="12" 
+                                       Foreground="#888888"
+                                       Margin="0,5,0,0"/>
+                        </StackPanel>
+
+                        <!-- Animations -->
+                        <StackPanel>
+                            <TextBlock Text="Animations" 
+                                       FontSize="16" 
+                                       FontWeight="Medium" 
+                                       Foreground="#555555"
+                                       Margin="0,0,0,8"/>
+                            <CheckBox x:Name="chkAnimations" 
+                                      Content="Activer les animations" 
+                                      IsChecked="True"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Section Notifications -->
+                <Border Background="#F8F9FA" CornerRadius="12" Padding="30" Margin="0,25,0,0">
+                    <StackPanel>
+                        <TextBlock Text="🔔 Notifications" 
+                                   FontSize="20" 
+                                   FontWeight="Bold" 
+                                   Foreground="#333333"
+                                   Margin="0,0,0,20"/>
+
+                        <!-- Notifications générales -->
+                        <StackPanel Margin="0,0,0,15">
+                            <CheckBox x:Name="chkNotifications" 
+                                      Content="Activer les notifications" 
+                                      IsChecked="True"
+                                      Margin="0,0,0,10"/>
+                            <CheckBox x:Name="chkSound" 
+                                      Content="Son des notifications" 
+                                      IsChecked="True"
+                                      Margin="0,0,0,10"/>
+                            <CheckBox x:Name="chkStartup" 
+                                      Content="Démarrer avec Windows" 
+                                      IsChecked="False"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Section Données -->
+                <Border Background="#F8F9FA" CornerRadius="12" Padding="30" Margin="0,25,0,0">
+                    <StackPanel>
+                        <TextBlock Text="💾 Données" 
+                                   FontSize="20" 
+                                   FontWeight="Bold" 
+                                   Foreground="#333333"
+                                   Margin="0,0,0,20"/>
+
+                        <!-- Sauvegarde automatique -->
+                        <StackPanel Margin="0,0,0,15">
+                            <TextBlock Text="Sauvegarde automatique" 
+                                       FontSize="16" 
+                                       FontWeight="Medium" 
+                                       Foreground="#555555"
+                                       Margin="0,0,0,8"/>
+                            <ComboBox x:Name="cmbAutoSave" 
+                                      Width="200" 
+                                      HorizontalAlignment="Left"
+                                      SelectedIndex="1">
+                                <ComboBoxItem Content="Désactivée"/>
+                                <ComboBoxItem Content="Toutes les 5 minutes"/>
+                                <ComboBoxItem Content="Toutes les 10 minutes"/>
+                                <ComboBoxItem Content="Toutes les 30 minutes"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <!-- Boutons d'action -->
+                        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                            <Button Content="Sauvegarder maintenant" 
+                                    Background="#007ACC" 
+                                    Foreground="White" 
+                                    Padding="15,8" 
+                                    Margin="0,0,10,0"
+                                    BorderThickness="0"
+                                    Click="btnSaveNow_Click"/>
+                            <Button Content="Restaurer" 
+                                    Background="#6C757D" 
+                                    Foreground="White" 
+                                    Padding="15,8" 
+                                    Margin="0,0,10,0"
+                                    BorderThickness="0"
+                                    Click="btnRestore_Click"/>
+                            <Button Content="Réinitialiser" 
+                                    Background="#DC3545" 
+                                    Foreground="White" 
+                                    Padding="15,8"
+                                    BorderThickness="0"
+                                    Click="btnReset_Click"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Section À propos -->
+                <Border Background="#E8F4FD" CornerRadius="12" Padding="30" Margin="0,25,0,0">
+                    <StackPanel>
+                        <TextBlock Text="ℹ️ Informations" 
+                                   FontSize="20" 
+                                   FontWeight="Bold" 
+                                   Foreground="#007ACC"
+                                   Margin="0,0,0,15"/>
+                        <TextBlock Text="Version: 1.0.0&#x0a;Développé avec WPF et C#&#x0a;© 2024 Application Bureau"
+                                   FontSize="14" 
+                                   Foreground="#333333"
+                                   TextWrapping="Wrap"
+                                   LineHeight="20"/>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

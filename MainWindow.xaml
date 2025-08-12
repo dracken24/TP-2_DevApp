@@ -5,8 +5,101 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TP_2_Developpement_Application_Burreau"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Application Bureau" Height="800" Width="1200"
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <!-- Styles pour les boutons de navigation -->
+        <Style x:Key="NavButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="20,15"/>
+            <Setter Property="Margin" Value="5,2"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F0F0F0"/>
+                                <Setter Property="Foreground" Value="#007ACC"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#E0E0E0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="950"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Barre latérale de navigation -->
+        <Border Grid.Column="0" Background="#FAFAFA" BorderBrush="#E0E0E0" BorderThickness="0,0,1,0">
+            <StackPanel Margin="20">
+                <!-- En-tête -->
+                <TextBlock Text="Application Bureau" 
+                           FontSize="20" 
+                           FontWeight="Bold" 
+                           Foreground="#333333" 
+                           Margin="0,0,0,30"
+                           HorizontalAlignment="Center"/>
+
+                <!-- Boutons de navigation -->
+                <Button x:Name="btnAccueil" 
+                        Content="🏠 Accueil" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="btnAccueil_Click"/>
+
+                <Button x:Name="btnFonctionnalites" 
+                        Content="⚙️ Fonctionnalités" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="btnFonctionnalites_Click"/>
+
+                <Button x:Name="btnParametres" 
+                        Content="🔧 Paramètres" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="btnParametres_Click"/>
+
+                <Button x:Name="btnAPropos" 
+                        Content="ℹ️ À propos" 
+                        Style="{StaticResource NavButtonStyle}"
+                        Click="btnAPropos_Click"/>
+
+                <!-- Espace flexible -->
+                <Grid/>
+
+                <!-- Pied de page -->
+                <TextBlock Text="Version 1.0" 
+                           FontSize="12" 
+                           Foreground="#888888" 
+                           HorizontalAlignment="Center"
+                           Margin="0,20,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Zone de contenu principal -->
+        <Border Grid.Column="1" Background="White">
+            <Frame x:Name="MainFrame" 
+                   NavigationUIVisibility="Hidden"
+                   Background="Transparent"/>
+        </Border>
     </Grid>
 </Window>

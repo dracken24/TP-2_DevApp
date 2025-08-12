@@ -1,0 +1,133 @@
+<Page x:Class="TP_2_Developpement_Application_Burreau.Pages.AccueilPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="Accueil">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="600"/>
+        </Grid.RowDefinitions>
+
+        <!-- En-tête de la page -->
+        <Border Grid.Row="0" Background="#007ACC" Padding="30,20">
+            <StackPanel>
+                <TextBlock Text="🏠 Bienvenue" 
+                           FontSize="32" 
+                           FontWeight="Bold" 
+                           Foreground="White"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="Application Bureau - Page d'accueil" 
+                           FontSize="16" 
+                           Foreground="#E0E0E0"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Contenu principal -->
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="40">
+                
+                <!-- Section de présentation -->
+                <Border Background="#F8F9FA" CornerRadius="12" Padding="30">
+                    <StackPanel>
+                        <TextBlock Text="À propos de cette application" 
+                                   FontSize="24" 
+                                   FontWeight="Bold" 
+                                   Foreground="#333333"
+                                   Margin="0,0,0,15"/>
+                        <TextBlock Text="Cette application WPF démontre l'utilisation de la navigation entre pages avec un design moderne et une interface utilisateur intuitive."
+                                   FontSize="16" 
+                                   Foreground="#666666"
+                                   TextWrapping="Wrap"
+                                   LineHeight="24"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Cartes de fonctionnalités -->
+                <TextBlock Text="Fonctionnalités principales" 
+                           FontSize="20" 
+                           FontWeight="Bold" 
+                           Foreground="#333333"
+                           Margin="0,20,0,15"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Carte 1 -->
+                    <Border Grid.Column="0" 
+                            Background="White" 
+                            BorderBrush="#E0E0E0" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            Padding="25"
+                            Margin="0,0,10,0">
+                        <StackPanel>
+                            <TextBlock Text="⚙️" FontSize="40" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+                            <TextBlock Text="Fonctionnalités" 
+                                       FontSize="18" 
+                                       FontWeight="Bold" 
+                                       Foreground="#333333"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,10"/>
+                            <TextBlock Text="Découvrez les différentes fonctionnalités de l'application et leurs utilisations."
+                                       FontSize="14" 
+                                       Foreground="#666666"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Carte 2 -->
+                    <Border Grid.Column="1" 
+                            Background="White" 
+                            BorderBrush="#E0E0E0" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            Padding="25"
+                            Margin="10,0,0,0">
+                        <StackPanel>
+                            <TextBlock Text="🔧" FontSize="40" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+                            <TextBlock Text="Paramètres" 
+                                       FontSize="18" 
+                                       FontWeight="Bold" 
+                                       Foreground="#333333"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,10"/>
+                            <TextBlock Text="Configurez l'application selon vos préférences et besoins."
+                                       FontSize="14" 
+                                       Foreground="#666666"
+                                       TextWrapping="Wrap"
+                                       TextAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!-- Section d'information -->
+                <Border Background="#E8F4FD" CornerRadius="12" Padding="30" Margin="0,20,0,0">
+                    <StackPanel>
+                        <TextBlock Text="💡 Information" 
+                                   FontSize="20" 
+                                   FontWeight="Bold" 
+                                   Foreground="#007ACC"
+                                   Margin="0,0,0,15"/>
+                        <TextBlock Text="Utilisez la barre de navigation à gauche pour explorer les différentes sections de l'application. Chaque page offre des fonctionnalités spécifiques et une interface adaptée à son usage."
+                                   FontSize="16" 
+                                   Foreground="#333333"
+                                   TextWrapping="Wrap"
+                                   LineHeight="24"/>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
