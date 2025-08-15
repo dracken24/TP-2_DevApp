@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Application Bureau" Height="800" Width="1200"
         WindowStartupLocation="CenterScreen">
-    
+
     <Window.Resources>
         <!-- Styles pour les boutons de navigation -->
         <Style x:Key="NavButtonStyle" TargetType="Button">
@@ -64,24 +64,35 @@
 
                 <!-- Boutons de navigation -->
                 <Button x:Name="btnAccueil" 
-                        Content="🏠 Accueil" 
+                        Content="🔐 Connexion" 
                         Style="{StaticResource NavButtonStyle}"
                         Click="btnAccueil_Click"/>
+                                <Button x:Name="btnCalendrier" 
+                         Content="📅 Calendrier" 
+                         Style="{StaticResource NavButtonStyle}"
+                         Click="btnCalendrier_Click"
+                         Visibility="Collapsed"/>
 
-                <Button x:Name="btnFonctionnalites" 
-                        Content="⚙️ Fonctionnalités" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="btnFonctionnalites_Click"/>
+                <Button x:Name="btnDeconnexion" 
+                         Content="🚪 Déconnexion" 
+                         Style="{StaticResource NavButtonStyle}"
+                         Click="btnDeconnexion_Click"
+                         Visibility="Collapsed"/>
 
-                <Button x:Name="btnParametres" 
+                <!-- Button x:Name="btnFonctionnalites" 
+                         Content="⚙️ Fonctionnalités" 
+                         Style="{StaticResource NavButtonStyle}"
+                         Click="btnFonctionnalites_Click" d:IsHidden="True"/ -->
+
+                <!-- Button x:Name="btnParametres" 
                         Content="🔧 Paramètres" 
                         Style="{StaticResource NavButtonStyle}"
-                        Click="btnParametres_Click"/>
+                        Click="btnParametres_Click" d:IsHidden="True"/ -->
 
-                <Button x:Name="btnAPropos" 
-                        Content="ℹ️ À propos" 
-                        Style="{StaticResource NavButtonStyle}"
-                        Click="btnAPropos_Click"/>
+                <!-- Button x:Name="btnAPropos" 
+                         Content="ℹ️ À propos" 
+                         Style="{StaticResource NavButtonStyle}"
+                         Click="btnAPropos_Click" d:IsHidden="True"/ -->
 
                 <!-- Espace flexible -->
                 <Grid/>

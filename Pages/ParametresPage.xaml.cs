@@ -3,14 +3,11 @@ using System.Windows.Controls;
 
 namespace TP_2_Developpement_Application_Burreau.Pages
 {
-    /// <summary>
-    /// Interaction logic for ParametresPage.xaml
-    /// </summary>
     public partial class ParametresPage : Page
     {
         public ParametresPage()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
 
         private void btnSaveNow_Click(object sender, RoutedEventArgs e)
@@ -29,13 +26,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             if (result == MessageBoxResult.Yes)
             {
                 // Réinitialiser les contrôles
-                cmbTheme.SelectedIndex = 0;
-                sliderFontSize.Value = 14;
-                chkAnimations.IsChecked = true;
-                chkNotifications.IsChecked = true;
-                chkSound.IsChecked = true;
-                chkStartup.IsChecked = false;
-                cmbAutoSave.SelectedIndex = 1;
+                ReinitControls();
                 
                 MessageBox.Show("Paramètres restaurés avec succès !", "Restauration", 
                                MessageBoxButton.OK, MessageBoxImage.Information);
@@ -52,17 +43,22 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             if (result == MessageBoxResult.Yes)
             {
                 // Réinitialiser les contrôles
-                cmbTheme.SelectedIndex = 0;
-                sliderFontSize.Value = 14;
-                chkAnimations.IsChecked = true;
-                chkNotifications.IsChecked = true;
-                chkSound.IsChecked = true;
-                chkStartup.IsChecked = false;
-                cmbAutoSave.SelectedIndex = 1;
-                
+                ReinitControls();
+
                 MessageBox.Show("Tous les paramètres ont été réinitialisés !", "Réinitialisation", 
                                MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        private void ReinitControls()
+        {
+            cmbTheme.SelectedIndex = 0;
+            sliderFontSize.Value = 14;
+            chkAnimations.IsChecked = true;
+            chkNotifications.IsChecked = true;
+            chkSound.IsChecked = true;
+            chkStartup.IsChecked = false;
+            cmbAutoSave.SelectedIndex = 1;
         }
     }
 }
