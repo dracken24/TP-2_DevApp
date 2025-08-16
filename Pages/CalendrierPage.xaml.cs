@@ -5,12 +5,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.EntityFrameworkCore;
-using TP_2_Developpement_Application_Burreau.Data;
-using TP_2_Developpement_Application_Burreau.Models;
-using TP_2_Developpement_Application_Burreau.Dialogs;
+using TP_2.Data;
+using TP_2.Models;
+using TP_2.Dialogs;
 
 
-namespace TP_2_Developpement_Application_Burreau.Pages
+namespace TP_2.Pages
 {
     public partial class CalendrierPage : Page
     {
@@ -48,6 +48,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             MainCalendar.SelectedDate = _currentDate;
         }
 
+        // Gestion des boutons de navigation du calendrier
         private void btnPrevMonth_Click(object sender, RoutedEventArgs e)
         {
             _currentDate = _currentDate.AddMonths(-1);
@@ -70,7 +71,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
 
         private void btnAddRendezVous_Click(object sender, RoutedEventArgs e)
         {
-            var selectedDate = MainCalendar.SelectedDate ?? DateTime.Today;
+            DateTime selectedDate = MainCalendar.SelectedDate ?? DateTime.Today;
             ShowRendezVousDialog(selectedDate);
         }
 
@@ -85,7 +86,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
 
             if (!rendezVous.Any())
             {
-                var noRendezVousText = new TextBlock
+                TextBlock noRendezVousText = new TextBlock
                 {
                     Text = "Aucun rendez-vous pour cette date",
                     FontSize = 14,
@@ -107,9 +108,10 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             UpdateStats(date, rendezVous.Count);
         }
 
+        // Pour la creation de la carte de rendez-vous
         private Border CreateRendezVousCard(RendezVous rdv)
         {
-            var card = new Border
+            Border card = new Border
             {
                 Background = new SolidColorBrush(Colors.White),
                 BorderBrush = new SolidColorBrush(Colors.LightGray),
@@ -119,10 +121,10 @@ namespace TP_2_Developpement_Application_Burreau.Pages
                 Padding = new Thickness(15)
             };
 
-            var stackPanel = new StackPanel();
+            StackPanel stackPanel = new StackPanel();
 
             // Titre
-            var titreText = new TextBlock
+            TextBlock titreText = new TextBlock
             {
                 Text = rdv.Titre,
                 FontSize = 16,
@@ -133,7 +135,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             stackPanel.Children.Add(titreText);
 
             // Heures
-            var heuresText = new TextBlock
+            TextBlock heuresText = new TextBlock
             {
                 Text = $"{rdv.DateDebut:HH:mm} - {rdv.DateFin:HH:mm}",
                 FontSize = 14,
@@ -145,7 +147,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             // Description
             if (!string.IsNullOrEmpty(rdv.Description))
             {
-                var descText = new TextBlock
+                TextBlock descText = new TextBlock
                 {
                     Text = rdv.Description,
                     FontSize = 12,
@@ -159,7 +161,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             // Lieu
             if (!string.IsNullOrEmpty(rdv.Lieu))
             {
-                var lieuText = new TextBlock
+                TextBlock lieuText = new TextBlock
                 {
                     Text = $"📍 {rdv.Lieu}",
                     FontSize = 12,
@@ -172,7 +174,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             // Client
             if (!string.IsNullOrEmpty(rdv.Client))
             {
-                var clientText = new TextBlock
+                TextBlock clientText = new TextBlock
                 {
                     Text = $"👤 {rdv.Client}",
                     FontSize = 12,
@@ -183,7 +185,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             }
 
             // Statut
-            var statutText = new TextBlock
+            TextBlock statutText = new TextBlock
             {
                 Text = $"📋 {rdv.Statut}",
                 FontSize = 12,
@@ -193,28 +195,28 @@ namespace TP_2_Developpement_Application_Burreau.Pages
             stackPanel.Children.Add(statutText);
 
             // Boutons d'action
-            var buttonPanel = new StackPanel { Orientation = Orientation.Horizontal };
-            
-                         var editButton = new Button
-             {
+            StackPanel buttonPanel = new StackPanel { Orientation = Orientation.Horizontal };
+
+            Button editButton = new Button
+            {
                  Content = "✏️ Modifier",
                  Background = new SolidColorBrush(Colors.Orange),
                  Foreground = new SolidColorBrush(Colors.White),
                  Padding = new Thickness(10, 5, 10, 5),
                  Margin = new Thickness(0, 0, 5, 0),
                  BorderThickness = new Thickness(0)
-             };
+            };
             editButton.Click += (s, e) => EditRendezVous(rdv);
             buttonPanel.Children.Add(editButton);
 
-                         var deleteButton = new Button
-             {
+            Button deleteButton = new Button
+            {
                  Content = "🗑️ Supprimer",
                  Background = new SolidColorBrush(Colors.Red),
                  Foreground = new SolidColorBrush(Colors.White),
                  Padding = new Thickness(10, 5, 10, 5),
                  BorderThickness = new Thickness(0)
-             };
+            };
             deleteButton.Click += (s, e) => DeleteRendezVous(rdv);
             buttonPanel.Children.Add(deleteButton);
 
@@ -237,23 +239,23 @@ namespace TP_2_Developpement_Application_Burreau.Pages
 
         private void UpdateStats(DateTime date, int count)
         {
-            var totalRendezVous = _context.RendezVous.Count(r => r.UserId == _currentUser.Id);
-            var todayRendezVous = _context.RendezVous.Count(r => r.DateDebut.Date == DateTime.Today && r.UserId == _currentUser.Id);
-            var thisWeekRendezVous = _context.RendezVous.Count(r => 
+            int totalRendezVous = _context.RendezVous.Count(r => r.UserId == _currentUser.Id);
+            int todayRendezVous = _context.RendezVous.Count(r => r.DateDebut.Date == DateTime.Today && r.UserId == _currentUser.Id);
+            int thisWeekRendezVous = _context.RendezVous.Count(r => 
                 r.DateDebut >= DateTime.Today && r.DateDebut <= DateTime.Today.AddDays(7) && r.UserId == _currentUser.Id);
 
             txtStats.Text = $"📅 {date:dd/MM/yyyy}: {count} rendez-vous\n" +
-                           $"📊 Total: {totalRendezVous} rendez-vous\n" +
-                           $"📋 Aujourd'hui: {todayRendezVous} rendez-vous\n" +
-                           $"📅 Cette semaine: {thisWeekRendezVous} rendez-vous";
+                            $"📊 Total: {totalRendezVous} rendez-vous\n" +
+                            $"📋 Aujourd'hui: {todayRendezVous} rendez-vous\n" +
+                            $"📅 Cette semaine: {thisWeekRendezVous} rendez-vous";
         }
 
         private void ShowRendezVousDialog(DateTime selectedDate)
         {
-            var dialog = new RendezVousDialog(selectedDate);
+            RendezVousDialog dialog = new RendezVousDialog(selectedDate);
             if (dialog.ShowDialog() == true)
             {
-                var newRendezVous = dialog.RendezVous;
+                RendezVous newRendezVous = dialog.RendezVous;
                 newRendezVous.UserId = _currentUser.Id;
                 _context.RendezVous.Add(newRendezVous);
                 _context.SaveChanges();
@@ -263,10 +265,10 @@ namespace TP_2_Developpement_Application_Burreau.Pages
 
         private void EditRendezVous(RendezVous rdv)
         {
-            var dialog = new RendezVousDialog(rdv.DateDebut, rdv);
+            RendezVousDialog dialog = new RendezVousDialog(rdv.DateDebut, rdv);
             if (dialog.ShowDialog() == true)
             {
-                var updatedRendezVous = dialog.RendezVous;
+                RendezVous updatedRendezVous = dialog.RendezVous;
                 rdv.Titre = updatedRendezVous.Titre;
                 rdv.Description = updatedRendezVous.Description;
                 rdv.DateDebut = updatedRendezVous.DateDebut;
@@ -283,7 +285,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
 
         private void DeleteRendezVous(RendezVous rdv)
         {
-            var result = MessageBox.Show(
+            MessageBoxResult result = MessageBox.Show(
                 $"Êtes-vous sûr de vouloir supprimer le rendez-vous '{rdv.Titre}' ?",
                 "Confirmation de suppression",
                 MessageBoxButton.YesNo,

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TP_2_Developpement_Application_Burreau.Models
+namespace TP_2.Models
 {
     public class RendezVous
     {

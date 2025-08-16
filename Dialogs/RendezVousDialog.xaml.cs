@@ -1,13 +1,13 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using TP_2_Developpement_Application_Burreau.Models;
+using TP_2.Models;
 
-namespace TP_2_Developpement_Application_Burreau.Dialogs
+namespace TP_2.Dialogs
 {
     public partial class RendezVousDialog : Window
     {
-        public RendezVous RendezVous { get; private set; }
+        public RendezVous ?RendezVous { get; private set; }
         private bool _isEditMode;
 
         public RendezVousDialog(DateTime selectedDate, RendezVous? existingRendezVous = null)

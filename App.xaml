@@ -1,7 +1,7 @@
-﻿<Application x:Class="TP_2_Developpement_Application_Burreau.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TP_2_Developpement_Application_Burreau"
+﻿<Application x:Class="TP_2.App"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:TP_2"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

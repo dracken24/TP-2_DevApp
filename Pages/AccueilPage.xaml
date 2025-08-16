@@ -1,11 +1,11 @@
-<Page x:Class="TP_2_Developpement_Application_Burreau.Pages.AccueilPage"
+<Page x:Class="TP_2.Pages.AccueilPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="Accueil">
+      Title="Accueil" Height="805">
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -32,7 +32,7 @@
         <!-- Contenu principal -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="40">
-                
+
                 <!-- Section de présentation -->
                 <Border Background="#F8F9FA" CornerRadius="12" Padding="30">
                     <StackPanel>
@@ -41,7 +41,7 @@
                                    FontWeight="Bold" 
                                    Foreground="#333333"
                                    Margin="0,0,0,15"/>
-                        <TextBlock Text="Cette application WPF démontre l'utilisation de la navigation entre pages avec un design moderne et une interface utilisateur intuitive."
+                        <TextBlock Text="Cette application WPF, dans le cadre du TP-2 du cours d'application de bureau."
                                    FontSize="16" 
                                    Foreground="#666666"
                                    TextWrapping="Wrap"
@@ -58,8 +58,8 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="300"/>
-                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="600"/>
+                        <ColumnDefinition Width="0"/>
                     </Grid.ColumnDefinitions>
 
                     <!-- Carte 1 -->
@@ -69,7 +69,7 @@
                             BorderThickness="1" 
                             CornerRadius="8" 
                             Padding="25"
-                            Margin="0,0,10,0">
+                            Margin="0,0,-103,0" Grid.ColumnSpan="2">
                         <StackPanel>
                             <TextBlock Text="⚙️" FontSize="40" HorizontalAlignment="Center" Margin="0,0,0,15"/>
                             <TextBlock Text="Fonctionnalités" 
@@ -78,54 +78,18 @@
                                        Foreground="#333333"
                                        HorizontalAlignment="Center"
                                        Margin="0,0,0,10"/>
-                            <TextBlock Text="Découvrez les différentes fonctionnalités de l'application et leurs utilisations."
+                            <TextBlock
                                        FontSize="14" 
                                        Foreground="#666666"
                                        TextWrapping="Wrap"
-                                       TextAlignment="Center"/>
+                                       TextAlignment="Center" Height="77"><Run Text="Permet de creer ou supprimer des utilisateurs. Ajouter, modifier ou supprimer des evenements sur"/><LineBreak/><Run Text="le calendrier."/><LineBreak/><Run Text="Les evenements sont supprimer en cascade lors de la supression d'un utilisateur."/></TextBlock>
                         </StackPanel>
                     </Border>
 
                     <!-- Carte 2 -->
-                    <Border Grid.Column="1" 
-                            Background="White" 
-                            BorderBrush="#E0E0E0" 
-                            BorderThickness="1" 
-                            CornerRadius="8" 
-                            Padding="25"
-                            Margin="10,0,0,0">
-                        <StackPanel>
-                            <TextBlock Text="🔧" FontSize="40" HorizontalAlignment="Center" Margin="0,0,0,15"/>
-                            <TextBlock Text="Paramètres" 
-                                       FontSize="18" 
-                                       FontWeight="Bold" 
-                                       Foreground="#333333"
-                                       HorizontalAlignment="Center"
-                                       Margin="0,0,0,10"/>
-                            <TextBlock Text="Configurez l'application selon vos préférences et besoins."
-                                       FontSize="14" 
-                                       Foreground="#666666"
-                                       TextWrapping="Wrap"
-                                       TextAlignment="Center"/>
-                        </StackPanel>
-                    </Border>
                 </Grid>
 
                 <!-- Section d'information -->
-                <Border Background="#E8F4FD" CornerRadius="12" Padding="30" Margin="0,20,0,0">
-                    <StackPanel>
-                        <TextBlock Text="💡 Information" 
-                                   FontSize="20" 
-                                   FontWeight="Bold" 
-                                   Foreground="#007ACC"
-                                   Margin="0,0,0,15"/>
-                        <TextBlock Text="Utilisez la barre de navigation à gauche pour explorer les différentes sections de l'application. Chaque page offre des fonctionnalités spécifiques et une interface adaptée à son usage."
-                                   FontSize="16" 
-                                   Foreground="#333333"
-                                   TextWrapping="Wrap"
-                                   LineHeight="24"/>
-                    </StackPanel>
-                </Border>
 
             </StackPanel>
         </ScrollViewer>

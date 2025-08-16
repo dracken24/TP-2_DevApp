@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace TP_2_Developpement_Application_Burreau.Pages
+namespace TP_2.Pages
 {
     /// <summary>
     /// Interaction logic for AccueilPage.xaml

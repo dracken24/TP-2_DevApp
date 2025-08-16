@@ -4,10 +4,10 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.EntityFrameworkCore;
-using TP_2_Developpement_Application_Burreau.Data;
-using TP_2_Developpement_Application_Burreau.Models;
+using TP_2.Data;
+using TP_2.Models;
 
-namespace TP_2_Developpement_Application_Burreau.Pages
+namespace TP_2.Pages
 {
     public partial class RegisterPage : Page
     {
@@ -21,13 +21,15 @@ namespace TP_2_Developpement_Application_Burreau.Pages
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidateForm())
+            {
                 return;
+            }
 
             try
             {
-                using var context = new ApplicationDbContext();
+                using ApplicationDbContext context = new ApplicationDbContext();
                 
-                // Vérifier si l'utilisateur existe déjà
+                // Verifier si l'utilisateur existe deja
                 if (context.Users.Any(u => u.Username == txtUsername.Text.Trim()))
                 {
                     MessageBox.Show("Ce nom d'utilisateur existe déjà.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -40,8 +42,8 @@ namespace TP_2_Developpement_Application_Burreau.Pages
                     return;
                 }
 
-                // Créer le nouvel utilisateur
-                var newUser = new User
+                // Creer le nouvel utilisateur
+                User newUser = new User
                 {
                     Username = txtUsername.Text.Trim(),
                     Email = txtEmail.Text.Trim(),

@@ -3,10 +3,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.EntityFrameworkCore;
-using TP_2_Developpement_Application_Burreau.Data;
-using TP_2_Developpement_Application_Burreau.Models;
+using TP_2.Data;
+using TP_2.Models;
 
-namespace TP_2_Developpement_Application_Burreau.Pages
+namespace TP_2.Pages
 {
     public partial class LoginPage : Page
     {
@@ -22,7 +22,7 @@ namespace TP_2_Developpement_Application_Burreau.Pages
         {
             try
             {
-                using var context = new ApplicationDbContext();
+                using ApplicationDbContext context = new ApplicationDbContext();
                 
                 // Forcer la création de la base de données
                 context.Database.EnsureCreated();
@@ -51,11 +51,11 @@ namespace TP_2_Developpement_Application_Burreau.Pages
                 // En cas d'erreur, essayer de recréer la base de données
                 try
                 {
-                    using var context = new ApplicationDbContext();
+                    using ApplicationDbContext context = new ApplicationDbContext();
                     context.Database.EnsureDeleted();
                     context.Database.EnsureCreated();
-                    
-                    var testUser = new User
+
+                    User testUser = new User
                     {
                         Username = "admin",
                         Email = "admin@example.com",
@@ -77,8 +77,8 @@ namespace TP_2_Developpement_Application_Burreau.Pages
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var username = txtUsername.Text.Trim();
-            var password = txtPassword.Password;
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Password;
 
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
@@ -88,8 +88,8 @@ namespace TP_2_Developpement_Application_Burreau.Pages
 
             try
             {
-                using var context = new ApplicationDbContext();
-                var user = context.Users
+                using ApplicationDbContext context = new ApplicationDbContext();
+                User ?user = context.Users
                     .FirstOrDefault(u => u.Username == username && u.Password == password && u.EstActif);
 
                 if (user != null)

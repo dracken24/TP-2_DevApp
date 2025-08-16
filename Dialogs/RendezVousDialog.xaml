@@ -1,4 +1,4 @@
-<Window x:Class="TP_2_Developpement_Application_Burreau.Dialogs.RendezVousDialog"
+<Window x:Class="TP_2.Dialogs.RendezVousDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Gestion de rendez-vous" 

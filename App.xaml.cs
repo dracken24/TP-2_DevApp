@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace TP_2_Developpement_Application_Burreau
+namespace TP_2
 {
     /// <summary>
     /// Interaction logic for App.xaml

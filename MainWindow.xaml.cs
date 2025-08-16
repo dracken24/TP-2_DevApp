@@ -8,10 +8,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TP_2_Developpement_Application_Burreau.Pages;
-using TP_2_Developpement_Application_Burreau.Models;
+using TP_2.Pages;
+using TP_2.Models;
 
-namespace TP_2_Developpement_Application_Burreau
+namespace TP_2
 {
 
     public partial class MainWindow : Window
@@ -20,9 +20,6 @@ namespace TP_2_Developpement_Application_Burreau
         private AccueilPage? accueilPage;
         private CalendrierPage? calendrierPage;
         private User? _currentUser;
-        //AProposPage aProposPage = new AProposPage();
-        //FonctionnalitesPage fonctionnalitesPage = new FonctionnalitesPage();
-        //ParametresPage parametresPage = new ParametresPage();
 
         public MainWindow()
         {
@@ -34,40 +31,25 @@ namespace TP_2_Developpement_Application_Burreau
 
         private void btnAccueil_Click(object sender, RoutedEventArgs e)
         {
-            // Si l'utilisateur n'est pas connecté, afficher la page de connexion
+            // Si l'utilisateur n'est pas connecte, afficher la page de connexion
             if (_currentUser == null)
             {
                 ShowLoginPage();
             }
             else
             {
-                // Si l'utilisateur est connecté, afficher la page d'accueil
+                // Si l'utilisateur est connecte, afficher la page d'accueil
                 if (accueilPage == null)
                     accueilPage = new AccueilPage();
                 NavigateToPage(accueilPage);
             }
         }
 
-        //private void btnFonctionnalites_Click(object sender, RoutedEventArgs e)
-        //{
-        //    NavigateToPage(fonctionnalitesPage);
-        //}
-
-        //private void btnParametres_Click(object sender, RoutedEventArgs e)
-        //{
-        //    NavigateToPage(parametresPage);
-        //}
-
-        //private void btnAPropos_Click(object sender, RoutedEventArgs e)
-        //{
-        //    NavigateToPage(aProposPage);
-        //}
-
         private void btnCalendrier_Click(object sender, RoutedEventArgs e)
         {
             if (_currentUser == null)
             {
-                MessageBox.Show("Veuillez vous connecter pour accéder au calendrier.", "Connexion requise", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Veuillez vous connecter pour acceder au calendrier.", "Connexion requise", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             
@@ -78,7 +60,7 @@ namespace TP_2_Developpement_Application_Burreau
 
         private void ShowLoginPage()
         {
-            var loginPage = new LoginPage();
+            LoginPage loginPage = new LoginPage();
             loginPage.UserLoggedIn += OnUserLoggedIn;
             MainFrame.Navigate(loginPage);
         }
@@ -88,7 +70,7 @@ namespace TP_2_Developpement_Application_Burreau
             _currentUser = user;
             accueilPage = new AccueilPage();
             
-            // Afficher les boutons après connexion
+            // Afficher les boutons apres connexion
             btnCalendrier.Visibility = Visibility.Visible;
             btnDeconnexion.Visibility = Visibility.Visible;
             
@@ -107,12 +89,12 @@ namespace TP_2_Developpement_Application_Burreau
             // Remettre le texte original du bouton accueil
             btnAccueil.Content = "🔐 Connexion";
             
-            // Réinitialiser les variables
+            // Reinitialiser les variables
             _currentUser = null;
             accueilPage = null;
             calendrierPage = null;
             
-            // Retourner à la page de connexion
+            // Retourner a la page de connexion
             ShowLoginPage();
         }
 

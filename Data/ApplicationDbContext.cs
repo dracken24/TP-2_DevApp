@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TP_2_Developpement_Application_Burreau.Models;
+using TP_2.Models;
 
-namespace TP_2_Developpement_Application_Burreau.Data
+namespace TP_2.Data
 {
     public class ApplicationDbContext : DbContext
     {
