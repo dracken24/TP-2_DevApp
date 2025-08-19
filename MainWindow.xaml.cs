@@ -29,6 +29,7 @@ namespace TP_2
             ShowLoginPage();
         }
 
+		// Bouton pour acceder a la page d'accueil
         private void btnAccueil_Click(object sender, RoutedEventArgs e)
         {
             // Si l'utilisateur n'est pas connecte, afficher la page de connexion
@@ -45,6 +46,7 @@ namespace TP_2
             }
         }
 
+		// Bouton pour acceder a la page de calendrier
         private void btnCalendrier_Click(object sender, RoutedEventArgs e)
         {
             if (_currentUser == null)
@@ -58,6 +60,7 @@ namespace TP_2
             NavigateToPage(calendrierPage);
         }
 
+		// Affichage de la page de connexion
         private void ShowLoginPage()
         {
             LoginPage loginPage = new LoginPage();
@@ -65,6 +68,7 @@ namespace TP_2
             MainFrame.Navigate(loginPage);
         }
 
+		// Evenement pour la connexion de l'utilisateur
         private void OnUserLoggedIn(object sender, User user)
         {
             _currentUser = user;
@@ -80,6 +84,7 @@ namespace TP_2
             NavigateToPage(accueilPage);
         }
 
+		// Bouton pour se deconnecter
         private void btnDeconnexion_Click(object sender, RoutedEventArgs e)
         {
             // Masquer les boutons
@@ -98,6 +103,7 @@ namespace TP_2
             ShowLoginPage();
         }
 
+		// Navigation vers une page
         private void NavigateToPage(Page page)
         {
             MainFrame.Navigate(page);

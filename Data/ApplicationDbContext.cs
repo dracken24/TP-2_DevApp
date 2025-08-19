@@ -49,10 +49,24 @@ namespace TP_2.Data
                 
                 // Relation avec User (cascade delete)
                 entity.HasOne(e => e.User)
-                      .WithMany(u => u.RendezVous)
-                      .HasForeignKey(e => e.UserId)
-                      .OnDelete(DeleteBehavior.Cascade);
+                    .WithMany(u => u.RendezVous)
+                    .HasForeignKey(e => e.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
+        }
+
+        public void PrintDB()
+        {
+			Console.WriteLine("*** DB Print ***");
+            foreach (var user in Users)
+            {
+                Console.WriteLine($"User: {user.Username} - {user.Email}");
+            }
+            foreach (var rendezVous in RendezVous)
+            {
+                Console.WriteLine($"Rendez-vous: {rendezVous.Titre} - {rendezVous.DateDebut} - {rendezVous.DateFin}");
+            }
+			Console.WriteLine("*** --- ***");
         }
     }
 }

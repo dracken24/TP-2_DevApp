@@ -29,6 +29,7 @@ namespace TP_2.Dialogs
             }
         }
 
+		// Initialisation des comboboxes
         private void InitializeComboBoxes()
         {
             // Heures (0-23)
@@ -58,6 +59,7 @@ namespace TP_2.Dialogs
             dpDateFin.SelectedDate = selectedDate;
         }
 
+		// Chargement des rendez-vous
         private void LoadRendezVous(RendezVous rdv)
         {
             txtTitre.Text = rdv.Titre;
@@ -89,12 +91,14 @@ namespace TP_2.Dialogs
         private void btnEnregistrer_Click(object sender, RoutedEventArgs e)
         {
             if (!ValidateForm())
+            {
                 return;
+            }
 
             try
             {
-                var dateDebut = GetDateTimeFromPickers(dpDateDebut, cmbHeureDebut, cmbMinuteDebut);
-                var dateFin = GetDateTimeFromPickers(dpDateFin, cmbHeureFin, cmbMinuteFin);
+                DateTime dateDebut = GetDateTimeFromPickers(dpDateDebut, cmbHeureDebut, cmbMinuteDebut);
+                DateTime dateFin = GetDateTimeFromPickers(dpDateFin, cmbHeureFin, cmbMinuteFin);
 
                 if (_isEditMode)
                 {
@@ -135,18 +139,20 @@ namespace TP_2.Dialogs
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors de la sauvegarde : {ex.Message}", 
-                              "Erreur", 
-                              MessageBoxButton.OK, 
-                              MessageBoxImage.Error);
+								"Erreur", 
+								MessageBoxButton.OK, 
+								MessageBoxImage.Error);
             }
         }
 
+		// Annulation du formulaire
         private void btnAnnuler_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
             Close();
         }
 
+		// Validation du formulaire
         private bool ValidateForm()
         {
             // Validation du titre
@@ -188,24 +194,25 @@ namespace TP_2.Dialogs
             }
 
             // Validation de la cohérence des dates/heures
-            var dateDebut = GetDateTimeFromPickers(dpDateDebut, cmbHeureDebut, cmbMinuteDebut);
-            var dateFin = GetDateTimeFromPickers(dpDateFin, cmbHeureFin, cmbMinuteFin);
+            DateTime dateDebut = GetDateTimeFromPickers(dpDateDebut, cmbHeureDebut, cmbMinuteDebut);
+            DateTime dateFin = GetDateTimeFromPickers(dpDateFin, cmbHeureFin, cmbMinuteFin);
 
             if (dateFin <= dateDebut)
             {
                 MessageBox.Show("La date/heure de fin doit être postérieure à la date/heure de début.", 
-                              "Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
+								"Validation", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
             return true;
         }
 
+		// Récupération de la date/heure à partir des pickers
         private DateTime GetDateTimeFromPickers(DatePicker datePicker, ComboBox hourComboBox, ComboBox minuteComboBox)
         {
-            var date = datePicker.SelectedDate ?? DateTime.Today;
-            var hour = int.Parse(hourComboBox.SelectedItem.ToString() ?? "0");
-            var minute = int.Parse(minuteComboBox.SelectedItem.ToString() ?? "0");
+            DateTime date = datePicker.SelectedDate ?? DateTime.Today;
+            int hour = int.Parse(hourComboBox.SelectedItem.ToString() ?? "0");
+            int minute = int.Parse(minuteComboBox.SelectedItem.ToString() ?? "0");
 
             return new DateTime(date.Year, date.Month, date.Day, hour, minute, 0);
         }

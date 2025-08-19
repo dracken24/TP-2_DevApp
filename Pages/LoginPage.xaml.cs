@@ -26,55 +26,14 @@ namespace TP_2.Pages
                 
                 // Forcer la création de la base de données
                 context.Database.EnsureCreated();
-                
-                // Attendre un peu pour s'assurer que la base est créée
-                System.Threading.Thread.Sleep(100);
-                
-                // Créer un utilisateur de test si aucun utilisateur n'existe
-                if (!context.Users.Any())
-                {
-                    var testUser = new User
-                    {
-                        Username = "admin",
-                        Email = "admin@example.com",
-                        Password = "admin123", // En production, utiliser un hash
-                        Nom = "Administrateur",
-                        Prenom = "Test",
-                        EstActif = true
-                    };
-                    context.Users.Add(testUser);
-                    context.SaveChanges();
-                }
             }
             catch (Exception ex)
             {
-                // En cas d'erreur, essayer de recréer la base de données
-                try
-                {
-                    using ApplicationDbContext context = new ApplicationDbContext();
-                    context.Database.EnsureDeleted();
-                    context.Database.EnsureCreated();
-
-                    User testUser = new User
-                    {
-                        Username = "admin",
-                        Email = "admin@example.com",
-                        Password = "admin123",
-                        Nom = "Administrateur",
-                        Prenom = "Test",
-                        EstActif = true
-                    };
-                    context.Users.Add(testUser);
-                    context.SaveChanges();
-                }
-                catch
-                {
-                    // Si ça ne marche toujours pas, on laisse l'erreur se propager
-                    throw;
-                }
+                MessageBox.Show("Erreur lors de la creation de la database: LoginPage.cs", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+		// Connexion de l'utilisateur
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             string username = txtUsername.Text.Trim();
@@ -112,6 +71,7 @@ namespace TP_2.Pages
             }
         }
 
+		// Navigation vers la page d'inscription
         private void btnGoToRegister_Click(object sender, RoutedEventArgs e)
         {
             // Navigation vers la page d'inscription

@@ -69,6 +69,7 @@ namespace TP_2.Pages
             }
         }
 
+	
         private void btnGoToLogin_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.GoBack();
@@ -132,6 +133,7 @@ namespace TP_2.Pages
             return true;
         }
 
+		// Validation de l'email
         private bool IsValidEmail(string email)
         {
             try
